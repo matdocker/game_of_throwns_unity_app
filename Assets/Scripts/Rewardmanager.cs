@@ -12,9 +12,11 @@ public class Rewardmanager : MonoBehaviour
   public GameObject[] Swords;
   public GameObject[] Shields;
   public GameObject[] Chests;
-  public GameObject[] Staffs;
-  public GameObject[] Crowns;
+  //public GameObject[] Staffs;
+  //public GameObject[] Crowns;
 
+
+  private GameScene gs;
   private List<GameObject> Dragon_1 = new List<GameObject>();
   private List<GameObject> Dragon_2 = new List<GameObject>();
   private List<GameObject> Dragon_3 = new List<GameObject>();
@@ -23,26 +25,26 @@ public class Rewardmanager : MonoBehaviour
   private List<GameObject> Sword_2 = new List<GameObject>();
   private List<GameObject> Sword_3 = new List<GameObject>();
   private List<GameObject> Sword_4 = new List<GameObject>();
-  private List<GameObject> Shield_1 = new List<GameObject>();
-  private List<GameObject> Shield_2 = new List<GameObject>();
-  private List<GameObject> Shield_3 = new List<GameObject>();
-  private List<GameObject> Shield_4 = new List<GameObject>();
+  //private List<GameObject> Shield_1 = new List<GameObject>();
+  //private List<GameObject> Shield_2 = new List<GameObject>();
+  //private List<GameObject> Shield_3 = new List<GameObject>();
+  //private List<GameObject> Shield_4 = new List<GameObject>();
   private List<GameObject> Chest_1 = new List<GameObject>();
   private List<GameObject> Chest_2 = new List<GameObject>();
   private List<GameObject> Chest_3 = new List<GameObject>();
   private List<GameObject> Chest_4 = new List<GameObject>();
-  private List<GameObject> Staff_1 = new List<GameObject>();
-  private List<GameObject> Staff_2 = new List<GameObject>();
-  private List<GameObject> Staff_3 = new List<GameObject>();
-  private List<GameObject> Staff_4 = new List<GameObject>();
-  private List<GameObject> Crown_1 = new List<GameObject>();
-  private List<GameObject> Crown_2 = new List<GameObject>();
-  private List<GameObject> Crown_3 = new List<GameObject>();
-  private List<GameObject> Crown_4 = new List<GameObject>();
+  //private List<GameObject> Staff_1 = new List<GameObject>();
+  //private List<GameObject> Staff_2 = new List<GameObject>();
+  //private List<GameObject> Staff_3 = new List<GameObject>();
+  //private List<GameObject> Staff_4 = new List<GameObject>();
+  //private List<GameObject> Crown_1 = new List<GameObject>();
+  //private List<GameObject> Crown_2 = new List<GameObject>();
+  //private List<GameObject> Crown_3 = new List<GameObject>();
+  //private List<GameObject> Crown_4 = new List<GameObject>();
 
   public List<string> collectedGifts = new List<string>();
   public List<GameObject> giftsOnPlatform = new List<GameObject>();
-  GameScene gamescene;
+  public GameScene gamescene;
   public Transform AvatarParent;
   public GameObject NewCoinParticle;
   public Text itemDiscription;
@@ -64,16 +66,14 @@ public class Rewardmanager : MonoBehaviour
   private bool adsVisible = false;
   public Transform gift_parent;
   private bool isInstantiating = false;
-  private bool isGiftInstantiating = false;
-  private float timer = 0f;
   private SoundManager sm;
   private int GiftCountOnQue = 0;
   private CoinManager coinManager;
   //		private AdGoogle admob;
   void Start()
   {
-    //				admob = FindObjectOfType<AdGoogle> ();
     sm = Transform.FindObjectOfType<SoundManager>();
+    gs = Transform.FindObjectOfType<GameScene>();
     coinManager = FindObjectOfType<CoinManager>();
     ActivateBonus("MoreXP", 10);
     ActivateBonus("MoreCoins", 20);
@@ -123,38 +123,38 @@ public class Rewardmanager : MonoBehaviour
     }
 
     // ----------  Crowns -----------
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Crowns[0]);
-      obj.name = "Crown_1";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Crown_1.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Crowns[1]);
-      obj.name = "Crown_2";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Crown_2.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Crowns[2]);
-      obj.name = "Crown_3";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Crown_3.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Crowns[3]);
-      obj.name = "Crown_4";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Crown_4.Add(obj);
-    }
+    /*for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Crowns[0]);
+			obj.name = "Crown_1";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Crown_1.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Crowns[1]);
+			obj.name = "Crown_2";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Crown_2.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Crowns[2]);
+			obj.name = "Crown_3";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Crown_3.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Crowns[3]);
+			obj.name = "Crown_4";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Crown_4.Add(obj);
+		}*/
     //---------- SWords ------------
     for (int i = 0; i < 3; i++)
     {
@@ -190,71 +190,71 @@ public class Rewardmanager : MonoBehaviour
     }
 
     // ----------- Staff ----------
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Staffs[0]);
-      obj.name = "Staff_1";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Staff_1.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Staffs[1]);
-      obj.name = "Staff_2";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Staff_2.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Staffs[2]);
-      obj.name = "Staff_3";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Staff_3.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Staffs[3]);
-      obj.name = "Staff_4";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Staff_4.Add(obj);
-    }
+    /*for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Staffs[0]);
+			obj.name = "Staff_1";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Staff_1.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Staffs[1]);
+			obj.name = "Staff_2";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Staff_2.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Staffs[2]);
+			obj.name = "Staff_3";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Staff_3.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Staffs[3]);
+			obj.name = "Staff_4";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Staff_4.Add(obj);
+		}*/
     // -------------- Sheilds ---------------
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Shields[0]);
-      obj.name = "Shield_1";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Shield_1.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Shields[1]);
-      obj.name = "Shield_2";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Shield_2.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Shields[2]);
-      obj.name = "Shield_3";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Shield_3.Add(obj);
-    }
-    for (int i = 0; i < 3; i++)
-    {
-      GameObject obj = (GameObject)Instantiate(Shields[3]);
-      obj.name = "Shield_4";
-      obj.transform.parent = gift_parent;
-      obj.SetActive(false);
-      Shield_4.Add(obj);
-    }
+    /*for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Shields[0]);
+			obj.name = "Shield_1";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Shield_1.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Shields[1]);
+			obj.name = "Shield_2";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Shield_2.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Shields[2]);
+			obj.name = "Shield_3";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Shield_3.Add(obj);
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(Shields[3]);
+			obj.name = "Shield_4";
+			obj.transform.parent = gift_parent ;
+			obj.SetActive (false);
+			Shield_4.Add(obj);
+		}*/
     // --------   Chest ---------------
     for (int i = 0; i < 3; i++)
     {
@@ -351,38 +351,24 @@ public class Rewardmanager : MonoBehaviour
     {
       return GetInActiveObject(Sword_4);
     }
-    else if (gName.Equals("crown_1"))
-    {
-      return GetInActiveObject(Crown_1);
-    }
-    else if (gName.Equals("crown_2"))
-    {
-      return GetInActiveObject(Crown_2);
-    }
-    else if (gName.Equals("crown_3"))
-    {
-      return GetInActiveObject(Crown_3);
-    }
-    else if (gName.Equals("crown_4"))
-    {
-      return GetInActiveObject(Crown_4);
-    }
-    else if (gName.Equals("shield_1"))
-    {
-      return GetInActiveObject(Shield_1);
-    }
-    else if (gName.Equals("shield_2"))
-    {
-      return GetInActiveObject(Shield_2);
-    }
-    else if (gName.Equals("shield_3"))
-    {
-      return GetInActiveObject(Shield_3);
-    }
-    else if (gName.Equals("shield_4"))
-    {
-      return GetInActiveObject(Shield_4);
-    }
+    /*else if(gName.Equals("crown_1")) {
+			return GetInActiveObject(Crown_1);
+		} else if(gName.Equals("crown_2") ){
+			return GetInActiveObject(Crown_2);
+		} else if(gName.Equals("crown_3")) {
+			return GetInActiveObject(Crown_3);
+		} else if(gName.Equals("crown_4")) {
+			return GetInActiveObject(Crown_4);
+		}*/
+    /*else if(gName.Equals("shield_1")) {
+			return GetInActiveObject(Shield_1);
+		} else if(gName.Equals("shield_2") ){
+			return GetInActiveObject(Shield_2);
+		} else if(gName.Equals("shield_3")) {
+			return GetInActiveObject(Shield_3);
+		} else if(gName.Equals("shield_4")) {
+			return GetInActiveObject(Shield_4);
+		}*/
     else if (gName.Equals("chest_1"))
     {
       return GetInActiveObject(Chest_1);
@@ -399,48 +385,52 @@ public class Rewardmanager : MonoBehaviour
     {
       return GetInActiveObject(Chest_4);
     }
-    else if (gName.Equals("staff_1"))
+    /*else if(gName.Equals("staff_1")) {
+			return GetInActiveObject(Staff_1);
+		} else if(gName.Equals("staff_2")) {
+			return GetInActiveObject(Staff_2);
+		} else if(gName.Equals("staff_3")) {
+			return GetInActiveObject(Staff_3);
+		} else if(gName.Equals("staff_4")) {
+			return GetInActiveObject(Staff_4);
+		}*/
+
+    if (gName.ToLower().Contains("dragon"))
     {
-      return GetInActiveObject(Staff_1);
+      for (int i = 0; i < Dragons.Length; i++)
+      {
+        if (Dragons[i].name == gName)
+        {
+          return Dragons[i];
+        }
+      }
     }
-    else if (gName.Equals("staff_2"))
+    else if (gName.ToLower().Contains("sword"))
     {
-      return GetInActiveObject(Staff_2);
-    }
-    else if (gName.Equals("staff_3"))
-    {
-      return GetInActiveObject(Staff_3);
-    }
-    else if (gName.Equals("staff_4"))
-    {
-      return GetInActiveObject(Staff_4);
-    }
-    /*
-		if(gName.ToLower().Contains("dragon")) {
-			for(int i = 0 ; i <Dragons.Length;i++) {
-				if(Dragons[i].name == gName) {
-					return Dragons[i];
-				}
-			}
-		} else if(gName.ToLower().Contains("sword")) {
-			for(int i = 0 ; i <Swords.Length;i++) {
-				if(Swords[i].name == gName) {
-					return Swords[i];
-				}
-			}
-		} else if(gName.ToLower().Contains("shield")) {
+      for (int i = 0; i < Swords.Length; i++)
+      {
+        if (Swords[i].name == gName)
+        {
+          return Swords[i];
+        }
+      }
+    } /*else if(gName.ToLower().Contains("shield")) {
 			for(int i = 0 ; i <Shields.Length;i++) {
 				if(Shields[i].name == gName) {
 					return Shields[i];
 				}
 			}
-		} else if(gName.ToLower().Contains("chest")) {
-			for(int i = 0 ; i <Chests.Length;i++) {
-				if(Chests[i].name == gName) {
-					return Chests[i];
-				}
-			}
-		} else if(gName.ToLower().Contains("crown")) {
+		}*/
+    else if (gName.ToLower().Contains("chest"))
+    {
+      for (int i = 0; i < Chests.Length; i++)
+      {
+        if (Chests[i].name == gName)
+        {
+          return Chests[i];
+        }
+      }
+    } /*else if(gName.ToLower().Contains("crown")) {
 			for(int i = 0 ; i <Crowns.Length;i++) {
 				if(Crowns[i].name == gName) {
 					return Crowns[i];
@@ -452,8 +442,8 @@ public class Rewardmanager : MonoBehaviour
 					return Staffs[i];
 				}
 			}
-		}
-*/
+		}*/
+
     return null;
   }
   public bool isActive
@@ -467,15 +457,15 @@ public class Rewardmanager : MonoBehaviour
     isActive = true;
     prizePanel.SetActive(true);
     gamescene.isPrizePanelVisible = true;
-    gamescene.isTouchEnabled = false;
-    if (gamescene.shakeParticle.activeSelf)
-    {
-      gamescene.shakeParticle.SetActive(false);
-    }
-    if (gamescene.coinParticle.activeSelf)
-    {
-      gamescene.coinParticle.SetActive(false);
-    }
+    gamescene.IsTouchEnabled = false;
+    //if(gamescene.shakeParticle.activeSelf)
+    //{
+    //	gamescene.shakeParticle.SetActive(false);
+    //}
+    //if(gamescene.coinParticle.activeSelf)
+    //{
+    //	gamescene.coinParticle.SetActive(false);
+    //}
     if (PrizeButtons.Length == 0)
     { // Add Listener to buttons once only 
       PrizeButtons = GameObject.FindGameObjectsWithTag("PrizeButton");
@@ -512,10 +502,12 @@ public class Rewardmanager : MonoBehaviour
     sm.ButtonClicked();
     prizePanel.SetActive(false);
     gamescene.isPrizePanelVisible = false;
-    gamescene.isTouchEnabled = true;
+    gamescene.IsTouchEnabled = true;
     //		admob.ShowAd ();
     isActive = false;
   }
+
+
   public void ChangeAvatarTo(GameObject pObj)
   {
     sm.ButtonClicked();
@@ -542,33 +534,27 @@ public class Rewardmanager : MonoBehaviour
       if (pObj.name.ToLower().Contains("sword"))
       {
         newAvatar.transform.localPosition = new Vector3(20, 30, -193);
-        itemSub = "Sword";
+        itemSub = "Toy Gun";
       }
       else if (pObj.name.ToLower().Contains("dragon"))
       {
         newAvatar.transform.localPosition = new Vector3(0, -27, -193);
-        itemSub = "Dragon";
-      }
-      else if (pObj.name.ToLower().Contains("staff"))
-      {
-        newAvatar.transform.localPosition = new Vector3(-40, -80, -193);
-        itemSub = "Staff";
-      }
-      else if (pObj.name.ToLower().Contains("crown"))
-      {
-        newAvatar.transform.localPosition = new Vector3(-0, -40, -193);
-        itemSub = "Crown";
-      }
+        itemSub = "Toy Bear";
+      }/* else if(pObj.name.ToLower().Contains("staff")) {
+				newAvatar.transform.localPosition = new Vector3(-40,-80,-193);
+				itemSub = "Toy Rocket";
+			} else if(pObj.name.ToLower().Contains("crown")) {
+				newAvatar.transform.localPosition = new Vector3(-0,-40,-193);
+				itemSub = "Toy Plane";
+			}*/
       else if (pObj.name.ToLower().Contains("chest"))
       {
         newAvatar.transform.localPosition = new Vector3(0, -25, -193);
-        itemSub = "Chest";
-      }
-      else if (pObj.name.ToLower().Contains("shield"))
-      {
-        newAvatar.transform.localPosition = new Vector3(0, 0, -193);
-        itemSub = "Shield";
-      }
+        itemSub = "Toy Chest";
+      } //else if(pObj.name.ToLower().Contains("shield")) {
+        //newAvatar.transform.localPosition = new Vector3(0,0,-193);
+        //itemSub = "Toy Truck";
+        //}
       int coinValue = GetCoinValue(pObj.name);
       if (coinValue > 0)
       {
@@ -634,25 +620,19 @@ public class Rewardmanager : MonoBehaviour
         RemoveToCollection("Dragon_");
         PlayerPrefs.SetInt("MoreCoins", getActivatedBonus("MoreCoins") + 2);
       }
-    }
-    else if (pBonus.ToLower().Contains("staff"))
-    {
-      bonusDiscription.text = "Coin regenerate faster.";
-      if (isCanGetBonus("Staff_"))
-      {
-        RemoveToCollection("Staff_");
-        PlayerPrefs.SetInt("CoinRegen", getActivatedBonus("CoinRegen") - 2);
-      }
-    }
-    else if (pBonus.ToLower().Contains("crown"))
-    {
-      bonusDiscription.text = "Coin Walls stay up longer";
-      if (isCanGetBonus("Crown_"))
-      {
-        RemoveToCollection("Crown_");
-        PlayerPrefs.SetInt("WallDuration", getActivatedBonus("WallDuration") + 5);
-      }
-    }
+    } /*else if(pBonus.ToLower().Contains("staff")) {
+			bonusDiscription.text = "Coin regenerate faster.";
+			if(isCanGetBonus("Staff_")) {
+				RemoveToCollection("Staff_");
+				PlayerPrefs.SetInt("CoinRegen",getActivatedBonus("CoinRegen") - 2);
+			}
+		} else if(pBonus.ToLower().Contains("crown")) {
+			bonusDiscription.text = "Coin Walls stay up longer";
+			if(isCanGetBonus("Crown_")) {
+				RemoveToCollection("Crown_");
+				PlayerPrefs.SetInt("WallDuration",getActivatedBonus("WallDuration") + 5);
+			}
+		}*/
     else if (pBonus.ToLower().Contains("chest"))
     {
       bonusDiscription.text = "Sometimes a new prize will appear whenever you collect a Giant Coin.";
@@ -661,16 +641,13 @@ public class Rewardmanager : MonoBehaviour
         RemoveToCollection("Chest_");
         PlayerPrefs.SetInt("PrizeChance", getActivatedBonus("PrizeChance") + 10);
       }
-    }
-    else if (pBonus.ToLower().Contains("shield"))
-    {
-      bonusDiscription.text = " Get extra Coins whenever a Special Coin is collected.";
-      if (isCanGetBonus("Shield_"))
-      {
-        RemoveToCollection("Shield_");
-        PlayerPrefs.SetInt("ExtraCoin", getActivatedBonus("ExtraCoin") + 2);
-      }
-    }
+    }/* else if(pBonus.ToLower().Contains("shield")) {
+			bonusDiscription.text = " Get extra Coins whenever a Special Coin is collected.";
+			if(isCanGetBonus("Shield_")) {
+				RemoveToCollection("Shield_");
+				PlayerPrefs.SetInt("ExtraCoin",getActivatedBonus("ExtraCoin") + 2);
+			}
+		}*/
   }
   private void ActivateBonus(string pBonus, int val)
   {
@@ -690,7 +667,7 @@ public class Rewardmanager : MonoBehaviour
       isInstantiating = true;
       int r = Random.Range(1, 3);
       float xPos = Random.Range(-1.75f, 1.8f);
-      Vector3 iPos = new Vector3(xPos, 3.5f, -3.3f);
+      Vector3 iPos = new Vector3(xPos, 5.5f, -3.3f);
       string newGiftName = pBaseName + r.ToString();
       GameObject newGift = GetGift(newGiftName); ;
       if (newGift)
@@ -738,54 +715,56 @@ public class Rewardmanager : MonoBehaviour
       rewardpoup.SetActive(true);
     }
     isRewardPopupVisible = true;
+    gs.isTouchEnabled = false;
 
-    int i = -1;
     if (pName.Contains("Dragon_"))
-    { //"Shield_","Dragon_","Sword_","Staff_","Shield_","Crown_","Chest"};
-      rewardTextCont.sprite = rewadtexts[0];
-      i = 0;
-    }
-    else if (pName.Contains("Shield_"))
     {
-      rewardTextCont.sprite = rewadtexts[1];
-      i = 1;
+      //"Shield_","Dragon_","Sword_","Staff_","Shield_","Crown_","Chest"};
+      rewardTextCont.sprite = rewadtexts[0];
+      gs.bear.SetActive(true);
+      gs.gun.SetActive(false);
+      gs.truck.SetActive(false);
+
     }
     else if (pName.Contains("Sword_"))
     {
-      rewardTextCont.sprite = rewadtexts[2];
-      i = 2;
-    }
+      rewardTextCont.sprite = rewadtexts[1];
+      gs.bear.SetActive(false);
+      gs.gun.SetActive(true);
+      gs.truck.SetActive(false);
+    } /*else if (pName.Contains("Shield_")) {
+			rewardTextCont.sprite = rewadtexts[2];
+			
+		}*/
     else if (pName.Contains("Chest_"))
     {
       rewardTextCont.sprite = rewadtexts[3];
-      i = 3;
-    }
-    else if (pName.Contains("Crown_"))
-    {
-      rewardTextCont.sprite = rewadtexts[4];
-      i = 4;
-    }
-    else if (pName.Contains("Staff_"))
-    {
-      rewardTextCont.sprite = rewadtexts[5];
-      i = 5;
-    }
+      gs.bear.SetActive(false);
+      gs.gun.SetActive(false);
+      gs.truck.SetActive(true);
+    }/* else if (pName.Contains("Staff_")) {
+			rewardTextCont.sprite = rewadtexts[4];
+			i =4;
+		} else if (pName.Contains("Crown_")) {
+			rewardTextCont.sprite = rewadtexts[5];
+			i =5;
+		}*/
+
     if (IsInvoking("ShowAdd"))
     {
       CancelInvoke("ShowAdd");
     }
     Invoke("ShowAdd", 3f);
   }
-  void ShowAdd()
-  {
-    if (!adsVisible)
-    {
-      adsVisible = true;
-      AdChartboost cb = Transform.FindObjectOfType<AdChartboost>();
-      cb.RequestFromRewardManager = true;
-      cb.ShowInterstitial();
-    }
-  }
+  /*void ShowAdd(){
+		if(!adsVisible)
+		{
+			adsVisible = true;
+			AdChartboost cb = Transform.FindObjectOfType<AdChartboost> ();
+			cb.RequestFromRewardManager = true;
+			cb.ShowInterstitial ();
+		}
+	}*/
   public void HideRewardPoup()
   {
     if (rewardpoup.activeSelf)
@@ -820,7 +799,43 @@ public class Rewardmanager : MonoBehaviour
     {
       isGiftInstantiating = true;
       int r = Random.Range(1, 5);
-      string[] giftNames = { "Dragon_", "Shield_", "Dragon_", "Sword_", "Staff_", "Crown_", "Chest_" };
+      string[] giftNames = { "Dragon_",/*"Shield_"*/"Dragon_", "Sword_",/*"Staff_","Crown_",*/"Chest_" };
+      Vector3 iPos = new Vector3(Random.Range(-1.5f, 1.0f), 2.0f, -Random.Range(2f, 5.4f));
+      string newReward = giftNames[Random.Range(0, giftNames.Length)];
+      while (prevReward.Equals(newReward))
+      {
+        if (GiftCountOnPlatform(newReward) < 3)
+        {
+          newReward = giftNames[Random.Range(0, giftNames.Length)];
+        }
+      }
+      prevReward = newReward;
+      string newGiftName = newReward + r.ToString();
+      GameObject newGift = GetGift(newGiftName);
+      if (newGift)
+      {
+        newGift.transform.position = iPos;
+        newGift.name = newGiftName;
+        newGift.SetActive(true);
+        giftsOnPlatform.Add(newGift);
+      }
+      GiftCountOnQue--;
+      InstantiateRandomGift(1);
+    }
+    else
+    {
+      isGiftInstantiating = false;
+      InstantiateRandomGift(1);
+    }
+  }
+
+  void IntantiateGiftFunc()
+  {
+    if (GiftCountOnQue > 0)
+    {
+      isGiftInstantiating = true;
+      int r = Random.Range(1, 5);
+      string[] giftNames = { "Dragon_",/*"Shield_",*/"Dragon_", "Sword_",/*"Staff_","Crown_",*/"Chest_" };
       Vector3 iPos = new Vector3(Random.Range(-1.5f, 0.6f), 5f, -Random.Range(2f, 5.4f));
       string newReward = giftNames[Random.Range(0, giftNames.Length)];
       while (prevReward.Equals(newReward))
@@ -883,7 +898,7 @@ public class Rewardmanager : MonoBehaviour
       int giftCount = PlayerPrefs.GetInt("GiftCount");
       if (giftCount > 0)
       {
-        Quaternion[] gift_rotation = PlayerPrefsX.GetQuaternionArray("GiftQuaternion");
+        //				Quaternion[] gift_rotation  = PlayerPrefsX.GetQuaternionArray("GiftQuaternion");
         Vector3[] gift_position = PlayerPrefsX.GetVector3Array("GiftPosition");
         string[] gift_name = PlayerPrefsX.GetStringArray("GiftName");
         for (int i = 0; i < giftCount; i++)
@@ -952,23 +967,17 @@ public class Rewardmanager : MonoBehaviour
       if (itemName.ToLower().Contains("dragon"))
       {
         return 6 * getItemCount(itemName);
-      }
-      else if (itemName.ToLower().Contains("shield"))
-      {
-        return 7 * getItemCount(itemName);
-      }
+      } /*else if(itemName.ToLower().Contains("shield")) {
+				return 7 * getItemCount(itemName);
+			}*/
       else if (itemName.ToLower().Contains("sword"))
       {
         return 8 * getItemCount(itemName);
-      }
-      else if (itemName.ToLower().Contains("crown"))
-      {
-        return 9 * getItemCount(itemName);
-      }
-      else if (itemName.ToLower().Contains("staff"))
-      {
-        return 10 * getItemCount(itemName);
-      }
+      } /*else if(itemName.ToLower().Contains("crown")) {
+				return 9 * getItemCount(itemName);
+			} else if(itemName.ToLower().Contains("staff")) {
+				return 10 * getItemCount(itemName);
+			}*/
       else if (itemName.ToLower().Contains("chest"))
       {
         return 11 * getItemCount(itemName);
@@ -1026,21 +1035,21 @@ public class Rewardmanager : MonoBehaviour
     {
       collectedGifts.Remove(giftName);
       string gift = giftName.ToLower();
-      if (gift.Contains("sword") || gift.Contains("shield") || gift.Contains("dragon"))
+      if (gift.Contains("sword") ||/* gift.Contains("shield") ||*/ gift.Contains("dragon"))
       {
         SaveCollectedGift();
         return 6;
       }
-      else if (gift.Contains("crown") || gift.Contains("staff") || gift.Contains("chest"))
+      else if (/*gift.Contains("crown") || gift.Contains("staff") ||*/ gift.Contains("chest"))
       {
         SaveCollectedGift();
         return 7;
       }
-      else if (gift.Contains("umbrella") || gift.Contains("whistle") || gift.Contains("yoyo"))
-      {
-        SaveCollectedGift();
-        return 8;
-      }
+      /*else if(gift.Contains("umbrella") || gift.Contains("whistle") || gift.Contains("yoyo"))
+			{
+				SaveCollectedGift();
+				return 8;
+			}*/
     }
     return 0;
   }
@@ -1056,20 +1065,20 @@ public class Rewardmanager : MonoBehaviour
     SaveGiftsRev2(Sword_3, "Sword_3");
     SaveGiftsRev2(Sword_4, "Sword_4");
 
-    SaveGiftsRev2(Crown_1, "Crown_1");
-    SaveGiftsRev2(Crown_2, "Crown_2");
-    SaveGiftsRev2(Crown_3, "Crown_3");
-    SaveGiftsRev2(Crown_4, "Crown_4");
+    /*SaveGiftsRev2 (Crown_1, "Crown_1");
+		SaveGiftsRev2 (Crown_2, "Crown_2");
+		SaveGiftsRev2 (Crown_3, "Crown_3");
+		SaveGiftsRev2 (Crown_4, "Crown_4");*/
 
-    SaveGiftsRev2(Shield_1, "Shield_1");
-    SaveGiftsRev2(Shield_2, "Shield_2");
-    SaveGiftsRev2(Shield_3, "Shield_3");
-    SaveGiftsRev2(Shield_4, "Shield_4");
+    /*SaveGiftsRev2 (Shield_1, "Shield_1");
+		SaveGiftsRev2 (Shield_2, "Shield_2");
+		SaveGiftsRev2 (Shield_3, "Shield_3");
+		SaveGiftsRev2 (Shield_4, "Shield_4");*/
 
-    SaveGiftsRev2(Staff_1, "Staff_1");
-    SaveGiftsRev2(Staff_2, "Staff_2");
-    SaveGiftsRev2(Staff_3, "Staff_3");
-    SaveGiftsRev2(Staff_4, "Staff_4");
+    /*SaveGiftsRev2 (Staff_1, "Staff_1");
+		SaveGiftsRev2 (Staff_2, "Staff_2");
+		SaveGiftsRev2 (Staff_3, "Staff_3");
+		SaveGiftsRev2 (Staff_4, "Staff_4");*/
 
     SaveGiftsRev2(Chest_1, "Chest_1");
     SaveGiftsRev2(Chest_2, "Chest_2");
@@ -1088,20 +1097,20 @@ public class Rewardmanager : MonoBehaviour
     LoadGiftsRev2(Sword_3, "Sword_3");
     LoadGiftsRev2(Sword_4, "Sword_4");
 
-    LoadGiftsRev2(Crown_1, "Crown_1");
-    LoadGiftsRev2(Crown_2, "Crown_2");
-    LoadGiftsRev2(Crown_3, "Crown_3");
-    LoadGiftsRev2(Crown_4, "Crown_4");
+    /*LoadGiftsRev2 (Crown_1, "Crown_1");
+		LoadGiftsRev2 (Crown_2, "Crown_2");
+		LoadGiftsRev2 (Crown_3, "Crown_3");
+		LoadGiftsRev2 (Crown_4, "Crown_4");*/
 
-    LoadGiftsRev2(Shield_1, "Shield_1");
-    LoadGiftsRev2(Shield_2, "Shield_2");
-    LoadGiftsRev2(Shield_3, "Shield_3");
-    LoadGiftsRev2(Shield_4, "Shield_4");
+    /*LoadGiftsRev2 (Shield_1, "Shield_1");
+		LoadGiftsRev2 (Shield_2, "Shield_2");
+		LoadGiftsRev2 (Shield_3, "Shield_3");
+		LoadGiftsRev2 (Shield_4, "Shield_4");*/
 
-    LoadGiftsRev2(Staff_1, "Staff_1");
-    LoadGiftsRev2(Staff_2, "Staff_2");
-    LoadGiftsRev2(Staff_3, "Staff_3");
-    LoadGiftsRev2(Staff_4, "Staff_4");
+    /*LoadGiftsRev2 (Staff_1, "Staff_1");
+		LoadGiftsRev2 (Staff_2, "Staff_2");
+		LoadGiftsRev2 (Staff_3, "Staff_3");
+		LoadGiftsRev2 (Staff_4, "Staff_4");*/
 
     LoadGiftsRev2(Chest_1, "Chest_1");
     LoadGiftsRev2(Chest_2, "Chest_2");

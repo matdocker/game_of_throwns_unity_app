@@ -12,9 +12,10 @@ public class SoundManager : MonoBehaviour
   public AudioClip notAvailable;
   public AudioClip prize;
   public AudioClip other;
+
   public enum SFX : int
   {
-    none, normal, regen, giant, levelup, shake, prize, wall, drop, nomore, other
+    none, normal, regen, giant, levelup, shake, prize, wall, drop, nomore, other, Drown, goal, bgm, oto, mg, back, obj, win1, win2, barrel
   };
   public AudioSource NormalDropAudio;
   public AudioSource RegenAudio;
@@ -28,6 +29,15 @@ public class SoundManager : MonoBehaviour
   public AudioSource NoMoreAudio;
   public AudioSource ButtonAudio;
   public AudioSource BGM;
+  public AudioSource DrownAudio;
+  public AudioSource GoalAudio;
+  public AudioSource OTO;
+  public AudioSource miniGame;
+  public AudioSource backClick;
+  public AudioSource objective;
+  public AudioSource win1;
+  public AudioSource win2;
+  public AudioSource barrel;
 
   public Slider slider;
   public Button menu;
@@ -66,7 +76,7 @@ public class SoundManager : MonoBehaviour
   {
     ButtonClicked();
     isActive = false;
-    FindObjectOfType<GameScene>().isTouchEnabled = true;
+    FindObjectOfType<GameScene>().IsTouchEnabled = true;
     PlayerPrefs.SetFloat("volume", volume);
     back.transform.parent.gameObject.SetActive(false);
   }
@@ -82,6 +92,7 @@ public class SoundManager : MonoBehaviour
     GiantAudio.volume = meh;
     DropAudio.volume = meh;
     NoMoreAudio.volume = meh;
+    DrownAudio.volume = meh;
     BGM.volume = meh / 1.7f;
     ButtonAudio.volume = meh;
     volume = meh;
@@ -200,7 +211,7 @@ public class SoundManager : MonoBehaviour
         ShakeAudio.Play();
       }
     }
-    else if (sfx == SFX.wall)
+    else if (sfx == SFX.nomore)
     {
       if (NoMoreAudio.isPlaying)
       {
@@ -211,7 +222,7 @@ public class SoundManager : MonoBehaviour
         NoMoreAudio.Play();
       }
     }
-    else if (sfx == SFX.nomore)
+    else if (sfx == SFX.wall)
     {
       if (WallsAudio.isPlaying)
       {
@@ -224,6 +235,7 @@ public class SoundManager : MonoBehaviour
     }
     else if (sfx == SFX.drop)
     {
+
       DropAudio.clip = coinsfx[DropCoinClip];
       if (DropAudio.isPlaying)
       {
@@ -235,10 +247,140 @@ public class SoundManager : MonoBehaviour
       }
     }
 
+    else if (sfx == SFX.Drown)
+    {
+      if (DrownAudio.isPlaying)
+      {
+        DrownAudio.PlayDelayed(0.12f);
+      }
+      else
+      {
+        DrownAudio.Play();
+      }
+    }
+
+    else if (sfx == SFX.goal)
+    {
+      if (GoalAudio.isPlaying)
+      {
+        GoalAudio.PlayDelayed(0.12f);
+      }
+      else
+      {
+        GoalAudio.Play();
+      }
+    }
+    else if (sfx == SFX.bgm)
+    {
+      if (BGM.isPlaying)
+      {
+        BGM.PlayDelayed(0.12f);
+      }
+      else
+      {
+        BGM.Play();
+      }
+    }
+    else if (sfx == SFX.oto)
+    {
+      if (OTO.isPlaying)
+      {
+        OTO.PlayDelayed(0.12f);
+      }
+      else
+      {
+        OTO.Play();
+      }
+    }
+    else if (sfx == SFX.mg)
+    {
+      if (miniGame.isPlaying)
+      {
+        miniGame.PlayDelayed(0.12f);
+        Invoke("StopMiniGame", 3.0f);
+      }
+      else
+      {
+        miniGame.Play();
+        Invoke("StopMiniGame", 3.0f);
+      }
+    }
+    else if (sfx == SFX.back)
+    {
+      if (backClick.isPlaying)
+      {
+        backClick.PlayDelayed(0.12f);
+
+      }
+      else
+      {
+        backClick.Play();
+      }
+    }
+    else if (sfx == SFX.obj)
+    {
+      if (objective.isPlaying)
+      {
+        objective.PlayDelayed(0.12f);
+      }
+      else
+      {
+        objective.Play();
+      }
+
+
+    }
+    else if (sfx == SFX.win1)
+    {
+      if (win1.isPlaying)
+      {
+        win1.PlayDelayed(0.12f);
+      }
+      else
+      {
+        win1.Play();
+      }
+
+
+    }
+    else if (sfx == SFX.win2)
+    {
+      if (win2.isPlaying)
+      {
+        win2.PlayDelayed(0.12f);
+      }
+      else
+      {
+        win2.Play();
+      }
+
+
+    }
+    else if (sfx == SFX.barrel)
+    {
+      if (barrel.isPlaying)
+      {
+        barrel.PlayDelayed(0.12f);
+      }
+      else
+      {
+        barrel.Play();
+      }
+    }
   }
+
+  void StopMiniGame()
+  {
+    miniGame.Stop();
+  }
+
   public void ButtonClicked()
   {
     ButtonAudio.Play();
+  }
+  public void BackClick()
+  {
+    backClick.Play();
   }
   public void PlaySFX(AudioClip clip)
   {
@@ -257,5 +399,9 @@ public class SoundManager : MonoBehaviour
     yield return new WaitForSeconds(0.25f);
     GetComponent<AudioSource>().clip = clip;
     GetComponent<AudioSource>().Play();
+  }
+  public void bmgStop()
+  {
+    BGM.Stop();
   }
 }
